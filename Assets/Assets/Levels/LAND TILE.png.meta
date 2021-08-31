@@ -1,0 +1,485 @@
+fileFormatVersion: 2
+guid: c738353c7f182604198a86f78278c08e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5811736973389962269
+    second: LAND TILE_0
+  - first:
+      213: -7152688234124612110
+    second: LAND TILE_0
+  - first:
+      213: 100403737227949148
+    second: LAND TILE_1
+  - first:
+      213: 8890239474986877226
+    second: LAND TILE_2
+  - first:
+      213: 4477066049989953667
+    second: LAND TILE_3
+  - first:
+      213: 6875516126004210102
+    second: LAND TILE_4
+  - first:
+      213: 1931489526229019436
+    second: LAND TILE_5
+  - first:
+      213: -6789974197550076143
+    second: LAND TILE_6
+  - first:
+      213: 4174006230511080319
+    second: LAND TILE_7
+  - first:
+      213: -5245862312303095381
+    second: LAND TILE_8
+  - first:
+      213: 5470573640497731334
+    second: LAND TILE_9
+  - first:
+      213: 6288193022170315611
+    second: LAND TILE_10
+  - first:
+      213: 8632120565685586227
+    second: LAND TILE_11
+  - first:
+      213: 3160833255878738241
+    second: LAND TILE_12
+  - first:
+      213: 2401114350744223469
+    second: LAND TILE_13
+  - first:
+      213: 6677422338109883083
+    second: LAND TILE_1
+  - first:
+      213: 2347519796427094297
+    second: LAND TILE_2
+  - first:
+      213: 3067971759909969941
+    second: LAND TILE_3
+  - first:
+      213: 7479126783738361201
+    second: LAND TILE_4
+  - first:
+      213: -3781573923191132262
+    second: LAND TILE_5
+  - first:
+      213: -1173835915551394963
+    second: LAND TILE_6
+  - first:
+      213: 8122265062351551253
+    second: LAND TILE_7
+  - first:
+      213: 3019431601320691328
+    second: LAND TILE_8
+  - first:
+      213: -1168283261007943155
+    second: LAND TILE_9
+  - first:
+      213: -4565944036487882945
+    second: LAND TILE_10
+  - first:
+      213: 1388704016008594619
+    second: LAND TILE_11
+  - first:
+      213: -136858911649675225
+    second: LAND TILE_12
+  - first:
+      213: 1006666687237026265
+    second: LAND TILE_13
+  - first:
+      213: -704655437869616987
+    second: LAND TILE_14
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 64
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: LAND TILE_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 229
+        width: 65
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 1}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2fde2e792fb8cbc90800000000000000
+      internalID: -7152688234124612110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LAND TILE_1
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 230
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc24c4eec38faac50800000000000000
+      internalID: 6677422338109883083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LAND TILE_2
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 230
+        width: 66
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 919fb3131d0149020800000000000000
+      internalID: 2347519796427094297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LAND TILE_3
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 230
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5102d529f00a39a20800000000000000
+      internalID: 3067971759909969941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LAND TILE_4
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 159
+        width: 65
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 1, z: 0, w: 1}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 175b5d60f223bc760800000000000000
+      internalID: 7479126783738361201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LAND TILE_5
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 159
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9fef407d86258bc0800000000000000
+      internalID: -3781573923191132262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LAND TILE_6
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 159
+        width: 65
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d63b6fc3472b5bfe0800000000000000
+      internalID: -1173835915551394963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LAND TILE_7
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 159
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51bb7056a0518b070800000000000000
+      internalID: 8122265062351551253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LAND TILE_8
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 88
+        width: 65
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 1, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0860f443b0d27e920800000000000000
+      internalID: 3019431601320691328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LAND TILE_9
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 88
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0a269e509c69cfe0800000000000000
+      internalID: -1168283261007943155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LAND TILE_10
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 88
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3793d8171282a0c0800000000000000
+      internalID: -4565944036487882945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LAND TILE_11
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 88
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb4c954e1faa54310800000000000000
+      internalID: 1388704016008594619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LAND TILE_12
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 14
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72846c28b87c91ef0800000000000000
+      internalID: -136858911649675225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LAND TILE_13
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 14
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d17bfbb40668fd00800000000000000
+      internalID: 1006666687237026265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
