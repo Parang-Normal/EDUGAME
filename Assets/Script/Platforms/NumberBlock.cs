@@ -4,22 +4,30 @@ using UnityEngine;
 
 public class NumberBlock : MonoBehaviour
 {
+    public enum GeneratorType
+    {
+        ProblemSet,
+        OperationsGenerator
+    }
+
     public bool CanHit = false;
     public int Value = 0;
     public int LowestValue = 0;
     public int HighestValue = 1;
     public int Increment = 1;
+    public GeneratorType Type = GeneratorType.ProblemSet;
+    
 
-    [SerializeField] Sprite InteractableSprite = null;
-    [SerializeField] Sprite NonInteractableSprite = null;
+    public Sprite InteractableSprite = null;
+    public Sprite NonInteractableSprite = null;
 
-    ProblemSet problemSet;
+    public ProblemSet problemSet;
+    public OperationGenerator operationGenerator;
 
     TextMesh text;
 
-    private void OnValidate()
+    void initialize()
     {
-        problemSet = gameObject.transform.parent.GetComponentInParent<ProblemSet>();
         text = gameObject.transform.GetChild(0).GetComponent<TextMesh>();
 
         text.text = Value.ToString();
@@ -31,9 +39,24 @@ public class NumberBlock : MonoBehaviour
 
     }
 
+    private void OnValidate()
+    {
+        initialize();
+    }
+
+    private void Start()
+    {
+        initialize(); 
+        
+        if (Type == GeneratorType.ProblemSet)
+            problemSet = gameObject.transform.parent.GetComponentInParent<ProblemSet>();
+        else if (Type == GeneratorType.OperationsGenerator)
+            operationGenerator = gameObject.transform.parent.GetComponentInParent<OperationGenerator>();
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.layer == 10 && CanHit)
+        if (collision.gameObject.layer == 10 && CanHit && Type == GeneratorType.ProblemSet)
         {
             Value += Increment;
 

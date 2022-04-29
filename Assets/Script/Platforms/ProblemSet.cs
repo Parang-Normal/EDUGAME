@@ -7,7 +7,8 @@ public enum Operations
     Subtraction,
     Addition,
     Multiplication,
-    Division
+    Division,
+    NULL
 }
 
 public enum Activator
@@ -35,15 +36,15 @@ public class AddAssets
 public class ProblemSet : MonoBehaviour
 {
     [Tooltip("The object which this generator would activte")]
-    [SerializeField] Activator Activate;
+    public Activator Activate = Activator.Blocks;
     [Tooltip("Dictates which operation will be used")]
-    [SerializeField] Operations operation = Operations.Subtraction;
-    [SerializeField] int Result = 0;
-    [SerializeField] NumberBlock FirstDigit = null;
-    [SerializeField] NumberBlock SecondDigit = null;
+    public Operations operation = Operations.Subtraction;
+    public int Result = 0;
+    public NumberBlock FirstDigit = null;
+    public NumberBlock SecondDigit = null;
     
-    [SerializeField] GameObject OperationSprite = null;
-    [SerializeField] GameObject ResultSprite = null;
+    public GameObject OperationSprite = null;
+    public GameObject ResultSprite = null;
 
     public OpAssets OperationAssets;
     public AddAssets AdditionAssets;
@@ -55,9 +56,9 @@ public class ProblemSet : MonoBehaviour
 
     //Bridge variables
     Transform BridgeSpawnPoint_Location;
-    float x = 0;
+    public bool bridgeActive = false;
 
-    private void OnValidate()
+    void intialize()
     {
         //Get question text meshes
         operation_text = OperationSprite.transform.GetChild(0).GetComponent<TextMesh>();
@@ -65,32 +66,46 @@ public class ProblemSet : MonoBehaviour
 
         //Get bridge spawn point
         BridgeSpawnPoint_Location = gameObject.transform.GetChild(2).transform;
-        
+
         //Sets the operation
         switch (operation)
         {
             case Operations.Subtraction:
                 //operation_text.text = "-";
                 OperationSprite.GetComponent<SpriteRenderer>().sprite = OperationAssets.Minium;
+                bridgeActive = true;
                 break;
 
             case Operations.Addition:
                 //operation_text.text = "+";
                 OperationSprite.GetComponent<SpriteRenderer>().sprite = OperationAssets.Addicus;
+                bridgeActive = false;
                 break;
 
             case Operations.Multiplication:
                 //operation_text.text = "x";
                 OperationSprite.GetComponent<SpriteRenderer>().sprite = OperationAssets.Multifly;
+                bridgeActive = false;
                 break;
 
             case Operations.Division:
                 //operation_text.text = "÷";
                 OperationSprite.GetComponent<SpriteRenderer>().sprite = OperationAssets.TheVoid;
+                bridgeActive = true;
                 break;
         }
 
         result_text.text = Result.ToString();
+    }
+
+    private void OnValidate()
+    {
+        intialize();
+    }
+
+    private void Start()
+    {
+        intialize();
     }
 
     public void CheckResult()
@@ -117,214 +132,122 @@ public class ProblemSet : MonoBehaviour
 
     void Subtract()
     {
+        int answer = FirstDigit.Value - SecondDigit.Value;
+
         if (Activate == Activator.MovingPlatform)
         {
-            int answer = FirstDigit.Value - SecondDigit.Value;
-
-            if (answer == Result)
-            {
-                for (int i = 0; i < BridgeSpawnPoint_Location.childCount; i++)
-                {
-                    BridgeSpawnPoint_Location.GetChild(i).GetComponent<MovingPlatform>().Activated = true;
-                }
-            }
-            else
-            {
-                for (int i = 0; i < BridgeSpawnPoint_Location.childCount; i++)
-                {
-                    BridgeSpawnPoint_Location.GetChild(i).GetComponent<MovingPlatform>().Activated = false;
-                }
-            }
+            ActivateMovingPlatform(answer);
         }
 
         else if (Activate == Activator.Blocks)
         {
-            if (FirstDigit.CanHit)
-            {
-                for (int i = 0; i < BridgeSpawnPoint_Location.childCount; i++)
-                {
-                    if (i < FirstDigit.Value)
-                        BridgeSpawnPoint_Location.GetChild(i).gameObject.SetActive(false);
-                    else
-                        BridgeSpawnPoint_Location.GetChild(i).gameObject.SetActive(true);
-                }
-            }
-            else if (SecondDigit.CanHit)
-            {
-                for (int i = 0; i < BridgeSpawnPoint_Location.childCount; i++)
-                {
-                    if (i < SecondDigit.Value)
-                        BridgeSpawnPoint_Location.GetChild(i).gameObject.SetActive(false);
-                    else
-                        BridgeSpawnPoint_Location.GetChild(i).gameObject.SetActive(true);
-                }
-            }
+            ActivateBlocks(answer, false);
         }
     }
 
     void Add()
     {
+        int answer = FirstDigit.Value + SecondDigit.Value;
+
         if (Activate == Activator.MovingPlatform)
         {
-            int answer = FirstDigit.Value + SecondDigit.Value;
-
-            if (answer == Result)
-            {
-                for (int i = 0; i < BridgeSpawnPoint_Location.childCount; i++)
-                {
-                    BridgeSpawnPoint_Location.GetChild(i).GetComponent<MovingPlatform>().Activated = true;
-                }
-            }
-            else
-            {
-                for (int i = 0; i < BridgeSpawnPoint_Location.childCount; i++)
-                {
-                    BridgeSpawnPoint_Location.GetChild(i).GetComponent<MovingPlatform>().Activated = false;
-                }
-            }
-
+            ActivateMovingPlatform(answer);
         }
+
         else if (Activate == Activator.Blocks)
         {
-            if (FirstDigit.CanHit)
-            {
-                for (int i = 0; i < BridgeSpawnPoint_Location.childCount; i++)
-                {
-                    if (i < FirstDigit.Value)
-                    {
-                        BridgeSpawnPoint_Location.GetChild(i).GetComponent<SpriteRenderer>().sprite = AdditionAssets.SolidSprite;
-                        BridgeSpawnPoint_Location.GetChild(i).GetComponent<BoxCollider2D>().enabled = true;
-                    }
-                    else
-                    {
-                        BridgeSpawnPoint_Location.GetChild(i).GetComponent<SpriteRenderer>().sprite = AdditionAssets.InvisibleSprite;
-                        BridgeSpawnPoint_Location.GetChild(i).GetComponent<BoxCollider2D>().enabled = false;
-                    }
-
-                }
-            }
-            else if (SecondDigit.CanHit)
-            {
-                for (int i = 0; i < BridgeSpawnPoint_Location.childCount; i++)
-                {
-                    if (i < SecondDigit.Value)
-                    {
-                        BridgeSpawnPoint_Location.GetChild(i).GetComponent<SpriteRenderer>().sprite = AdditionAssets.SolidSprite;
-                        BridgeSpawnPoint_Location.GetChild(i).GetComponent<BoxCollider2D>().enabled = true;
-                    }
-                    else
-                    {
-                        BridgeSpawnPoint_Location.GetChild(i).GetComponent<SpriteRenderer>().sprite = AdditionAssets.InvisibleSprite;
-                        BridgeSpawnPoint_Location.GetChild(i).GetComponent<BoxCollider2D>().enabled = false;
-                    }
-                }
-            }
+            ActivateBlocks(answer, true);
         }
     }
 
     void Multiply()
     {
+        int answer = FirstDigit.Value * SecondDigit.Value;
+
         if (Activate == Activator.MovingPlatform)
         {
-            int answer = FirstDigit.Value * SecondDigit.Value;
-
-            if (answer == Result)
-            {
-                for (int i = 0; i < BridgeSpawnPoint_Location.childCount; i++)
-                {
-                    BridgeSpawnPoint_Location.GetChild(i).GetComponent<MovingPlatform>().Activated = true;
-                }
-            }
-            else
-            {
-                for (int i = 0; i < BridgeSpawnPoint_Location.childCount; i++)
-                {
-                    BridgeSpawnPoint_Location.GetChild(i).GetComponent<MovingPlatform>().Activated = false;
-                }
-            }
+            ActivateMovingPlatform(answer);
         }
         else if (Activate == Activator.Blocks)
         {
-            if (FirstDigit.CanHit)
-            {
-                for (int i = 0; i < BridgeSpawnPoint_Location.childCount; i++)
-                {
-                    if (i < FirstDigit.Value)
-                    {
-                        BridgeSpawnPoint_Location.GetChild(i).GetComponent<SpriteRenderer>().sprite = AdditionAssets.SolidSprite;
-                        BridgeSpawnPoint_Location.GetChild(i).GetComponent<BoxCollider2D>().enabled = true;
-                    }
-                    else
-                    {
-                        BridgeSpawnPoint_Location.GetChild(i).GetComponent<SpriteRenderer>().sprite = AdditionAssets.InvisibleSprite;
-                        BridgeSpawnPoint_Location.GetChild(i).GetComponent<BoxCollider2D>().enabled = false;
-                    }
-
-                }
-            }
-            else if (SecondDigit.CanHit)
-            {
-                for (int i = 0; i < BridgeSpawnPoint_Location.childCount; i++)
-                {
-                    if (i < SecondDigit.Value)
-                    {
-                        BridgeSpawnPoint_Location.GetChild(i).GetComponent<SpriteRenderer>().sprite = AdditionAssets.SolidSprite;
-                        BridgeSpawnPoint_Location.GetChild(i).GetComponent<BoxCollider2D>().enabled = true;
-                    }
-                    else
-                    {
-                        BridgeSpawnPoint_Location.GetChild(i).GetComponent<SpriteRenderer>().sprite = AdditionAssets.InvisibleSprite;
-                        BridgeSpawnPoint_Location.GetChild(i).GetComponent<BoxCollider2D>().enabled = false;
-                    }
-                }
-            }
+            ActivateBlocks(answer, true);
         }
     }
 
     void Divide()
     {
-        int answer = FirstDigit.Value / SecondDigit.Value;
+        float correctAnswer = Result;
+        float answer = (FirstDigit.Value * 1.0f) / (SecondDigit.Value * 1.0f);
+
 
         if (Activate == Activator.MovingPlatform)
         {
-            if(answer == Result)
-            {
-                for (int i = 0; i < BridgeSpawnPoint_Location.childCount; i++)
-                {
-                    BridgeSpawnPoint_Location.GetChild(i).GetComponent<MovingPlatform>().Activated = true;
-                }
-            }
-            else
-            {
-                for (int i = 0; i < BridgeSpawnPoint_Location.childCount; i++)
-                {
-                    BridgeSpawnPoint_Location.GetChild(i).GetComponent<MovingPlatform>().Activated = false;
-                }
-            }
+            ActivateMovingPlatform(answer);
         }
 
-        else if(Activate == Activator.Blocks)
+        else if (Activate == Activator.Blocks)
         {
-            if (FirstDigit.CanHit)
+            ActivateBlocks(answer, false);
+        }
+        
+    }
+
+    void ActivateMovingPlatform(float answer) 
+    {
+        if (answer == Result)
+        {
+            for (int i = 0; i < BridgeSpawnPoint_Location.childCount; i++)
             {
-                for (int i = 0; i < BridgeSpawnPoint_Location.childCount; i++)
+                BridgeSpawnPoint_Location.GetChild(i).GetComponent<MovingPlatform>().ActivatePlatform(true);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < BridgeSpawnPoint_Location.childCount; i++)
+            {
+                BridgeSpawnPoint_Location.GetChild(i).GetComponent<MovingPlatform>().ActivatePlatform(false);
+            }
+        }
+    }
+
+    void ActivateBlocks(float answer, bool activate)
+    {
+        //If answer is correct and the bridge is not active, then activate bridge
+        if (answer == Result && bridgeActive == !activate)
+        {
+            for (int i = 0; i < BridgeSpawnPoint_Location.childCount; i++)
+            {
+                if (BridgeSpawnPoint_Location.GetChild(i).GetComponent<ToggleTiles>() != null)
+                    BridgeSpawnPoint_Location.GetChild(i).GetComponent<ToggleTiles>().ToggleSprite(activate);
+
+                if(BridgeSpawnPoint_Location.GetChild(i).GetComponent<MovingPlatform>() != null)
+                    BridgeSpawnPoint_Location.GetChild(i).GetComponent<MovingPlatform>().ActivatePlatform(!activate);
+
+                if (BridgeSpawnPoint_Location.GetChild(i).CompareTag("Enemy"))
                 {
-                    if (i < FirstDigit.Value)
-                        BridgeSpawnPoint_Location.GetChild(i).gameObject.SetActive(false);
-                    else
-                        BridgeSpawnPoint_Location.GetChild(i).gameObject.SetActive(true);
+                    if(BridgeSpawnPoint_Location.GetChild(i).GetComponentInChildren<EnemyLaser>() != null)
+                    {
+                        BridgeSpawnPoint_Location.GetChild(i).GetChild(0).gameObject.SetActive(false);
+                    }
                 }
             }
-            else if (SecondDigit.CanHit)
+
+            bridgeActive = activate;
+        }
+
+        //If bridge is active, disable bridge
+        else if (bridgeActive == activate)
+        {
+            for (int i = 0; i < BridgeSpawnPoint_Location.childCount; i++)
             {
-                for (int i = 0; i < BridgeSpawnPoint_Location.childCount; i++)
-                {
-                    if (i < SecondDigit.Value)
-                        BridgeSpawnPoint_Location.GetChild(i).gameObject.SetActive(false);
-                    else
-                        BridgeSpawnPoint_Location.GetChild(i).gameObject.SetActive(true);
-                }
+                if (BridgeSpawnPoint_Location.GetChild(i).GetComponent<ToggleTiles>() != null)
+                    BridgeSpawnPoint_Location.GetChild(i).GetComponent<ToggleTiles>().ToggleSprite(!activate);
+
+                if (BridgeSpawnPoint_Location.GetChild(i).GetComponent<MovingPlatform>() != null)
+                    BridgeSpawnPoint_Location.GetChild(i).GetComponent<MovingPlatform>().ActivatePlatform(activate);
             }
+
+            bridgeActive = !activate;
         }
     }
 

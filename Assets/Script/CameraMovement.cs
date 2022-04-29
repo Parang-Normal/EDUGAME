@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    [SerializeField] GameObject Player = null;
-    [SerializeField] float MinX = 0.0f;
-    [SerializeField] float MaxX = 0.0f;
-    [SerializeField] float MinY = 0.0f;
-    [SerializeField] float MaxY = 0.0f;
+    public GameObject Player = null;
+    public float MinX = 0.0f;
+    public float MaxX = 0.0f;
+    public float MinY = 0.0f;
+    public float MaxY = 0.0f;
 
-    private void Update()
+    private void Start()
+    {
+        GameMode.Instance.CameraMinY = MinY;
+    }
+
+    private void FixedUpdate()
     {
         float x = Mathf.Clamp(Player.transform.position.x, MinX, MaxX);
         float y = Mathf.Clamp(Player.transform.position.y, MinY, MaxY);

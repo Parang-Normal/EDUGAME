@@ -3,7 +3,14 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - CameraShift
+  - Key
+  - Generator
+  - Land
+  - KillZ
+  - Wall
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -16,7 +23,7 @@ TagManager:
   - Land
   - Generator
   - Player
-  - 
+  - Key
   - 
   - 
   - 
@@ -38,11 +45,14 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Background
+  - name: 'Level Background '
     uniqueID: 2578057917
     locked: 0
   - name: LandTiles
     uniqueID: 780135437
+    locked: 0
+  - name: Background
+    uniqueID: 4052536821
     locked: 0
   - name: Generator
     uniqueID: 1753295363
@@ -52,4 +62,10 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 2239853843
+    locked: 0
+  - name: Foreground
+    uniqueID: 146659269
+    locked: 0
+  - name: HUD
+    uniqueID: 2098992403
     locked: 0

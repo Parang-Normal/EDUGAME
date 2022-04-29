@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1686831286162117330}
   m_Layer: 9
   m_Name: Equation
-  m_TagString: Untagged
+  m_TagString: Generator
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 1686831286249511753}
   m_Layer: 9
   m_Name: Second Digit
-  m_TagString: Untagged
+  m_TagString: Generator
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -107,8 +107,7 @@ SpriteRenderer:
   m_SortingLayerID: 1753295363
   m_SortingLayer: -1
   m_SortingOrder: 0
-  m_Sprite: {fileID: -7964798955025535235, guid: 323968650ce30ee41a434173d8de538f,
-    type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9529eda5fdb46fc48858e6edafbf6814, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -136,7 +135,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.9765625, y: 0.9765625}
     newSize: {x: 0.64, y: 0.64}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -162,10 +161,12 @@ MonoBehaviour:
   LowestValue: 0
   HighestValue: 5
   Increment: 1
-  InteractableSprite: {fileID: 4178564318118267045, guid: 323968650ce30ee41a434173d8de538f,
+  Type: 0
+  InteractableSprite: {fileID: 21300000, guid: 9ab5ff42de648a04481de42d45b8d911, type: 3}
+  NonInteractableSprite: {fileID: 21300000, guid: 9529eda5fdb46fc48858e6edafbf6814,
     type: 3}
-  NonInteractableSprite: {fileID: -7964798955025535235, guid: 323968650ce30ee41a434173d8de538f,
-    type: 3}
+  problemSet: {fileID: 0}
+  operationGenerator: {fileID: 0}
 --- !u!1 &1686831286265422001
 GameObject:
   m_ObjectHideFlags: 0
@@ -179,7 +180,7 @@ GameObject:
   - component: {fileID: 1686831286265422003}
   m_Layer: 9
   m_Name: '?'
-  m_TagString: Untagged
+  m_TagString: Generator
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -216,7 +217,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10100, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 2100000, guid: e6e634c1fb4175f4a897e8aa9e43803f, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -252,10 +253,10 @@ TextMesh:
   m_Anchor: 4
   m_Alignment: 1
   m_TabSize: 4
-  m_FontSize: 0
+  m_FontSize: 10
   m_FontStyle: 0
   m_RichText: 1
-  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Font: {fileID: 12800000, guid: e6e634c1fb4175f4a897e8aa9e43803f, type: 3}
   m_Color:
     serializedVersion: 2
     rgba: 4278190080
@@ -272,7 +273,7 @@ GameObject:
   - component: {fileID: 1686831286294835057}
   m_Layer: 9
   m_Name: Result
-  m_TagString: Untagged
+  m_TagString: Generator
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -285,7 +286,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1686831286294835055}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.48, z: 0}
+  m_LocalPosition: {x: 0.17, y: -0.03, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_Children: []
   m_Father: {fileID: 5758984361631246096}
@@ -309,7 +310,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10100, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 2100000, guid: e6e634c1fb4175f4a897e8aa9e43803f, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -345,10 +346,10 @@ TextMesh:
   m_Anchor: 4
   m_Alignment: 1
   m_TabSize: 4
-  m_FontSize: 72
+  m_FontSize: 50
   m_FontStyle: 0
   m_RichText: 1
-  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Font: {fileID: 12800000, guid: e6e634c1fb4175f4a897e8aa9e43803f, type: 3}
   m_Color:
     serializedVersion: 2
     rgba: 4294967295
@@ -364,7 +365,7 @@ GameObject:
   - component: {fileID: 1686831286336401353}
   m_Layer: 9
   m_Name: GameObject
-  m_TagString: Untagged
+  m_TagString: Generator
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -421,7 +422,7 @@ GameObject:
   - component: {fileID: 1686831286458639622}
   m_Layer: 9
   m_Name: GameObject
-  m_TagString: Untagged
+  m_TagString: Generator
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -480,7 +481,7 @@ GameObject:
   - component: {fileID: 1686831286536892518}
   m_Layer: 9
   m_Name: First Digit
-  m_TagString: Untagged
+  m_TagString: Generator
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -540,8 +541,7 @@ SpriteRenderer:
   m_SortingLayerID: 1753295363
   m_SortingLayer: -1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 4178564318118267045, guid: 323968650ce30ee41a434173d8de538f,
-    type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9ab5ff42de648a04481de42d45b8d911, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -569,7 +569,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.9765625, y: 0.9765625}
     newSize: {x: 0.64, y: 0.64}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -595,10 +595,12 @@ MonoBehaviour:
   LowestValue: 0
   HighestValue: 10
   Increment: 1
-  InteractableSprite: {fileID: 4178564318118267045, guid: 323968650ce30ee41a434173d8de538f,
+  Type: 0
+  InteractableSprite: {fileID: 21300000, guid: 9ab5ff42de648a04481de42d45b8d911, type: 3}
+  NonInteractableSprite: {fileID: 21300000, guid: 9529eda5fdb46fc48858e6edafbf6814,
     type: 3}
-  NonInteractableSprite: {fileID: -7964798955025535235, guid: 323968650ce30ee41a434173d8de538f,
-    type: 3}
+  problemSet: {fileID: 0}
+  operationGenerator: {fileID: 0}
 --- !u!1 &1686831287115400423
 GameObject:
   m_ObjectHideFlags: 0
@@ -612,7 +614,7 @@ GameObject:
   - component: {fileID: 1686831287115400424}
   m_Layer: 9
   m_Name: Operation
-  m_TagString: Untagged
+  m_TagString: Generator
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -721,7 +723,7 @@ GameObject:
   - component: {fileID: 1686831287295197124}
   m_Layer: 9
   m_Name: '?'
-  m_TagString: Untagged
+  m_TagString: Generator
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -758,7 +760,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10100, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 2100000, guid: e6e634c1fb4175f4a897e8aa9e43803f, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -794,10 +796,10 @@ TextMesh:
   m_Anchor: 4
   m_Alignment: 1
   m_TabSize: 4
-  m_FontSize: 0
+  m_FontSize: 10
   m_FontStyle: 0
   m_RichText: 1
-  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Font: {fileID: 12800000, guid: e6e634c1fb4175f4a897e8aa9e43803f, type: 3}
   m_Color:
     serializedVersion: 2
     rgba: 4278190080
@@ -813,7 +815,7 @@ GameObject:
   - component: {fileID: 1686831287349234252}
   m_Layer: 9
   m_Name: GameObject
-  m_TagString: Untagged
+  m_TagString: Generator
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -870,7 +872,7 @@ GameObject:
   - component: {fileID: 5758984361631246104}
   m_Layer: 9
   m_Name: Result
-  m_TagString: Untagged
+  m_TagString: Generator
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -929,7 +931,7 @@ SpriteRenderer:
   m_SortingLayerID: 1753295363
   m_SortingLayer: -1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0dedcd1f7228840419ddd4db96ddbeea, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 02eac8f50ceac2f4881d01dcca2cd84a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -952,7 +954,7 @@ GameObject:
   - component: {fileID: 5758984362144154381}
   m_Layer: 9
   m_Name: BridgeSpawnPoint
-  m_TagString: Untagged
+  m_TagString: Generator
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1008,7 +1010,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 780135437
-  m_SortingLayer: -2
+  m_SortingLayer: -3
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1034,7 +1036,7 @@ GameObject:
   - component: {fileID: 9105246294598423186}
   m_Layer: 9
   m_Name: Normal Generator
-  m_TagString: Untagged
+  m_TagString: Generator
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1081,10 +1083,11 @@ MonoBehaviour:
     Multifly: {fileID: 21300000, guid: c102ab4c889b7ef489298b883b8a8e90, type: 3}
     TheVoid: {fileID: 21300000, guid: bbc628302e6b7244b9a2570b734086c5, type: 3}
   AdditionAssets:
-    InvisibleSprite: {fileID: 6998206742142136753, guid: 323968650ce30ee41a434173d8de538f,
+    InvisibleSprite: {fileID: -5802840939984127462, guid: 323968650ce30ee41a434173d8de538f,
       type: 3}
     SolidSprite: {fileID: 2401114350744223469, guid: c738353c7f182604198a86f78278c08e,
       type: 3}
+  bridgeActive: 1
 --- !u!61 &9105246294598423186
 BoxCollider2D:
   m_ObjectHideFlags: 0

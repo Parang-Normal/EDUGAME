@@ -6,13 +6,13 @@ public class FallingPlatform : MonoBehaviour
 {
     [SerializeField] float FallDelay = 1.5f;
     [SerializeField] int CorrectAnswer = 0;
-    [SerializeField] Operations Operation;
+    [SerializeField] Operations Operation = Operations.Addition;
     [SerializeField] int FirstDigit = 0;
     [SerializeField] int SecondDigit = 0;
 
     bool willFall = true;
 
-    private void OnValidate()
+    void iniialize()
     {
         TextMesh text = gameObject.transform.GetChild(0).GetComponent<TextMesh>();
         string operation_text = "";
@@ -40,8 +40,14 @@ public class FallingPlatform : MonoBehaviour
         text.text = FirstDigit + " " + operation_text + " " + SecondDigit;
     }
 
+    private void OnValidate()
+    {
+        iniialize();
+    }
+
     private void Start()
     {
+        iniialize();
         int result = 0;
 
         switch (Operation)

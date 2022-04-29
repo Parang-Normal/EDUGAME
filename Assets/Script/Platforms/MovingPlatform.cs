@@ -5,7 +5,15 @@ using UnityEngine.PlayerLoop;
 
 public class MovingPlatform : MonoBehaviour
 {
+    public enum Axis
+    {
+        Horizontal,
+        Vertical
+    }
+
+    public Axis Direction;
     public bool Activated = false;
+    public bool Automatic = false;
     public Vector3 MaxDistance = new Vector3(0, 0, 0);
     public Vector3 Velocity = new Vector3(0, 0, 0);
 
@@ -20,17 +28,55 @@ public class MovingPlatform : MonoBehaviour
         distance = MaxDistance + originalPosition;
     }
 
+    private void Start()
+    {
+        originalPosition = gameObject.transform.position;
+        distance = MaxDistance + originalPosition;
+    }
+
     private void Update()
     {
-        if (Activated && hasPlayer)
+        if (Activated && (hasPlayer || Automatic))
         {
             transform.position += (Velocity * Time.deltaTime * direction);
-            if (transform.position.x >= distance.x)
-                direction = -1;
 
-            else if (transform.position.x <= originalPosition.x)
-                direction = 1;
+            if(Direction == Axis.Horizontal)
+            {
+                if (transform.position.x >= distance.x)
+                    direction = -1;
 
+                else if (transform.position.x <= originalPosition.x)
+                    direction = 1;
+            }
+            else if(Direction == Axis.Vertical)
+            {
+                if (transform.position.y >= distance.y)
+                    direction = -1;
+
+                else if (transform.position.y <= originalPosition.y)
+                    direction = 1;
+            }
+
+        }
+    }
+
+    public void ActivatePlatform(bool active)
+    {
+        Activated = active;
+
+        if (active)
+        {
+            for(int i = 0; i < transform.childCount; i++)
+            {
+                transform.GetChild(i).GetComponent<SpriteRenderer>().color = Color.white;
+            }
+        }
+        else
+        {
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                transform.GetChild(i).GetComponent<SpriteRenderer>().color = Color.grey;
+            }
         }
     }
 
@@ -39,7 +85,7 @@ public class MovingPlatform : MonoBehaviour
         if(collision.gameObject.layer == 10)
         {
             hasPlayer = true;
-            collision.collider.transform.SetParent(transform);
+            collision.gameObject.transform.parent.SetParent(transform);
         }
     }
 
@@ -48,12 +94,12 @@ public class MovingPlatform : MonoBehaviour
         if (collision.gameObject.layer == 10)
         {
             hasPlayer = false;
-            collision.collider.transform.SetParent(null);
+            collision.gameObject.transform.parent.SetParent(null);
         }
     }
 
     private void OnDrawGizmos()
     {
-        Debug.DrawLine(originalPosition, distance, Color.red, Mathf.Infinity);
+        Debug.DrawLine(originalPosition, distance, Color.red, 1);
     }
 }

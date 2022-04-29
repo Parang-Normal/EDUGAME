@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 8e5abaf05d3a1cc4a95239caaa42a551
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: TachyonW00-Regular
+  fontNames:
+  - TachyonW00-Regular
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: e6e634c1fb4175f4a897e8aa9e43803f, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
