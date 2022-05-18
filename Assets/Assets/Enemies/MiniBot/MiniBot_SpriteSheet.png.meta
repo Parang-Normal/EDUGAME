@@ -1247,6 +1247,8 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -1255,9 +1257,9 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
-    aniso: -1
-    mipBias: -100
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -1278,9 +1280,12 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
   applyGammaDecoding: 0
   platformSettings:
   - serializedVersion: 3
@@ -1743,6 +1748,26 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      MiniBot_SpriteSheet_14: 7838692013005168934
+      MiniBot_SpriteSheet_16: -2047541558163447275
+      MiniBot_SpriteSheet_9: 4773219481146340146
+      MiniBot_SpriteSheet_0: 4822676301535124149
+      MiniBot_SpriteSheet_1: 6244040237784796770
+      MiniBot_SpriteSheet_11: -6818879120387070187
+      MiniBot_SpriteSheet_3: -1463193694648803277
+      MiniBot_SpriteSheet_7: -8596091569313432500
+      MiniBot_SpriteSheet_12: 7958994622573802222
+      MiniBot_SpriteSheet_17: -3569908708081597067
+      MiniBot_SpriteSheet_2: -6317991439394546422
+      MiniBot_SpriteSheet_10: 2228169275013106704
+      MiniBot_SpriteSheet_6: -3948494896976332788
+      MiniBot_SpriteSheet_18: -4769357686288328569
+      MiniBot_SpriteSheet_15: -3371078674795079636
+      MiniBot_SpriteSheet_5: -5993497446879346813
+      MiniBot_SpriteSheet_13: 1355284968881164760
+      MiniBot_SpriteSheet_8: -2423918737642460012
+      MiniBot_SpriteSheet_4: -6917744619669004605
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

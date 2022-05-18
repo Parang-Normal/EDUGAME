@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ToggleTiles : MonoBehaviour
+public class ToggleTiles : Platform
 {
     public Sprite InvisibleSprite;
     public Sprite SolidSprite;
@@ -15,7 +15,21 @@ public class ToggleTiles : MonoBehaviour
     {
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         boxCollider = gameObject.GetComponent<BoxCollider2D>();
-        boxCollider.enabled = !IsInvisible;
+        // boxCollider.enabled = !IsInvisible;
+        ToggleSprite(!IsInvisible);
+    }
+
+    public override void ToggleActivate(bool activate, Operations Operation)
+    {
+        //Make blocks visible when addition/multiplication and make blocks invisible if subtraction/division
+        if(Operation == Operations.Addition || Operation == Operations.Multiplication)
+        {
+            ToggleSprite(activate);
+        }
+        else if(Operation == Operations.Subtraction || Operation == Operations.Division)
+        {
+            ToggleSprite(!activate);
+        }
     }
 
     public void ToggleSprite(bool makeSolid)

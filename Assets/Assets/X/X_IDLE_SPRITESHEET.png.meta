@@ -98,6 +98,8 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -106,9 +108,9 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
-    aniso: -1
-    mipBias: -100
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -129,9 +131,12 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
   applyGammaDecoding: 0
   platformSettings:
   - serializedVersion: 3
@@ -720,6 +725,32 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      X_IDLE_SPRITESHEET_19: -7325435861325695275
+      X_IDLE_SPRITESHEET_23: 4317871546114586991
+      X_IDLE_SPRITESHEET_22: 3574780005256143212
+      X_IDLE_SPRITESHEET_3: -8071780818421733115
+      X_IDLE_SPRITESHEET_9: -1987272957564951393
+      X_IDLE_SPRITESHEET_10: -7882661401576197304
+      X_IDLE_SPRITESHEET_6: -535485786331175502
+      X_IDLE_SPRITESHEET_18: 7949447999095447240
+      X_IDLE_SPRITESHEET_0: 5268883219448005806
+      X_IDLE_SPRITESHEET_21: 2443106473854601336
+      X_IDLE_SPRITESHEET_12: -2546815109483538225
+      X_IDLE_SPRITESHEET_16: 255309739617129192
+      X_IDLE_SPRITESHEET_4: -5482744902571918001
+      X_IDLE_SPRITESHEET_15: 8153097793444767501
+      X_IDLE_SPRITESHEET_8: -4882478740367659645
+      X_IDLE_SPRITESHEET_14: 7443875252772215217
+      X_IDLE_SPRITESHEET_13: 6077033355198479441
+      X_IDLE_SPRITESHEET_2: 6405526822802701176
+      X_IDLE_SPRITESHEET_11: 3311487951297087046
+      X_IDLE_SPRITESHEET_20: -9218218161605198805
+      X_IDLE_SPRITESHEET_1: -3118514428795890476
+      X_IDLE_SPRITESHEET_24: 4444497065713369072
+      X_IDLE_SPRITESHEET_5: 1575109370710523406
+      X_IDLE_SPRITESHEET_7: -3114096375670408579
+      X_IDLE_SPRITESHEET_17: -8369353516461429745
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

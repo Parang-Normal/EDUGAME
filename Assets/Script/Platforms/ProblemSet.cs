@@ -14,7 +14,7 @@ public enum Operations
 public enum Activator
 {
     Blocks,
-    MovingPlatform
+    MovingPlatform,
 }
 
 [System.Serializable]
@@ -24,6 +24,13 @@ public class OpAssets
     public Sprite Minium;
     public Sprite Multifly;
     public Sprite TheVoid;
+}
+
+[System.Serializable]
+public class DigitAssets
+{
+    public Sprite Interactable;
+    public Sprite NonInteractable;
 }
 
 [System.Serializable]
@@ -189,7 +196,7 @@ public class ProblemSet : MonoBehaviour
         {
             ActivateBlocks(answer, false);
         }
-        
+
     }
 
     void ActivateMovingPlatform(float answer) 
@@ -222,14 +229,6 @@ public class ProblemSet : MonoBehaviour
 
                 if(BridgeSpawnPoint_Location.GetChild(i).GetComponent<MovingPlatform>() != null)
                     BridgeSpawnPoint_Location.GetChild(i).GetComponent<MovingPlatform>().ActivatePlatform(!activate);
-
-                if (BridgeSpawnPoint_Location.GetChild(i).CompareTag("Enemy"))
-                {
-                    if(BridgeSpawnPoint_Location.GetChild(i).GetComponentInChildren<EnemyLaser>() != null)
-                    {
-                        BridgeSpawnPoint_Location.GetChild(i).GetChild(0).gameObject.SetActive(false);
-                    }
-                }
             }
 
             bridgeActive = activate;
@@ -250,6 +249,7 @@ public class ProblemSet : MonoBehaviour
             bridgeActive = !activate;
         }
     }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

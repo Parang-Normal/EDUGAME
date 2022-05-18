@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
-public class MovingPlatform : MonoBehaviour
+public class MovingPlatform : Platform
 {
     public enum Axis
     {
@@ -58,6 +58,11 @@ public class MovingPlatform : MonoBehaviour
             }
 
         }
+    }
+
+    public override void ToggleActivate(bool activate, Operations Operation)
+    {
+        ActivatePlatform(activate);
     }
 
     public void ActivatePlatform(bool active)

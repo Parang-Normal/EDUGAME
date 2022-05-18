@@ -42,6 +42,5 @@ public class Parallax : MonoBehaviour
     public void ActivateParallax(float StartingX)
     {
         this.enabled = true;
-        cameraPos = StartingX;
     }
 }

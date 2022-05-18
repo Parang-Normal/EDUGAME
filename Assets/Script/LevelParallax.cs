@@ -12,7 +12,7 @@ public class LevelParallax : MonoBehaviour
             for(int i = 0; i < transform.childCount; i++)
             {
                 if (transform.GetChild(i).GetComponent<Parallax>() != null)
-                    transform.GetChild(i).GetComponent<Parallax>().ActivateParallax(collision.transform.position.x);
+                    transform.GetChild(i).GetComponent<Parallax>().ActivateParallax(collision.transform.position.x); //returns x-axis value of collider?
             }
         }
     }
