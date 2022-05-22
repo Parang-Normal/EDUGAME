@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//Not needed
 public class HealthBar : MonoBehaviour
 {
     [SerializeField] Sprite Health1 = null;

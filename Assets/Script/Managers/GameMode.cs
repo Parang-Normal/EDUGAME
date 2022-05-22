@@ -57,7 +57,7 @@ public class GameMode : MonoBehaviour
 
         LivesText = Elements.HUD.transform.Find("Stats").Find("Lives").Find("LivesText").GetComponent<Text>();
         TimerText = Elements.HUD.transform.Find("Stats").Find("Timer").Find("TimerText").GetComponent<Text>();
-        GemsText = Elements.HUD.transform.Find("Stats").Find("Gems").Find("GemsText").GetComponent<Text>();
+        GemsText = Elements.HUD.transform.Find("Stats").Find("Fragments").Find("FragmentsText").GetComponent<Text>();
         Item = Elements.HUD.transform.Find("Stats").Find("Inventory").Find("Slot 1").Find("Item").GetComponent<Image>();
 
         LivesText.text = Lives.ToString("0");
@@ -99,6 +99,12 @@ public class GameMode : MonoBehaviour
 
             CameraShiftList.Clear();
         }
+    }
+
+    public void UpdateLife()
+    {
+        Lives++;
+        LivesText.text = Lives.ToString("0");
     }
 
     public void UpdateGems(int amount)

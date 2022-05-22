@@ -7,20 +7,22 @@ public class ProblemGenerator : MonoBehaviour
     public OpAssets OperationAssets;
     public ProblemStats Properties;
 
-    private DigitBlock FirstDigit;
-    private DigitBlock SecondDigit;
-    private DigitBlock Result;
+    private AnswerBlock FirstDigit;
+    private AnswerBlock SecondDigit;
+    private ResultBlock Result;
     private SpriteRenderer Operation;
     private GameObject Platforms;
+    private InteractableObject Interactable;
     private bool PlatformActivated = false;
 
     private void Awake()
     {
-        FirstDigit = transform.Find("FirstDigit").GetComponent<DigitBlock>();
-        SecondDigit = transform.Find("SecondDigit").GetComponent<DigitBlock>();
-        Result = transform.Find("Result").GetComponent<DigitBlock>();
+        FirstDigit = transform.Find("FirstDigit").GetComponent<AnswerBlock>();
+        SecondDigit = transform.Find("SecondDigit").GetComponent<AnswerBlock>();
+        Result = transform.Find("Result").GetComponent<ResultBlock>();
         Operation = transform.Find("Operation").GetComponent<SpriteRenderer>();
         Platforms = transform.Find("Platforms").gameObject;
+        Interactable = transform.Find("Interactable").GetComponent<InteractableObject>();
     }
 
     private void Start()
@@ -55,6 +57,7 @@ public class ProblemGenerator : MonoBehaviour
                 Result.SetValue(Properties.Result_Value);
                 break;
 
+                /*
             //Result must be solved
             case MissingNumber.Result:
                 Properties.FirstDigit_Value = Random.Range(Properties.FirstDigit_MinValue, Properties.FirstDigit_MaxValue);
@@ -67,6 +70,7 @@ public class ProblemGenerator : MonoBehaviour
                 SecondDigit.SetValue(Properties.SecondDigit_Value);
                 Result.SetValue(Properties.Result_Value);
                 break;
+                */
         }
     }
 
@@ -131,14 +135,32 @@ public class ProblemGenerator : MonoBehaviour
     public void Check()
     {
         //Debug.Log("Answer: " + Solve(FirstDigit.GetValue(), SecondDigit.GetValue()).ToString() + " Result: " + Result.GetValue().ToString());
+        //If correct answer
         if(Solve(FirstDigit.GetValue(), SecondDigit.GetValue()) == Result.GetValue())
         {
-            Debug.Log("Correct!");
+            Result.SetResult(true);
             TogglePlatform(true);
         }
+        //If wrong answer
         else
         {
+            Result.SetResult(false);
             TogglePlatform(false);
+        }
+    }
+
+    public AnswerBlock GetMissingBlock()
+    {
+        switch (Properties.Problem)
+        {
+            case MissingNumber.FirstDigit:
+                return FirstDigit;
+
+            case MissingNumber.SecondDigit:
+                return SecondDigit;
+
+            default:
+                return new AnswerBlock();
         }
     }
 }

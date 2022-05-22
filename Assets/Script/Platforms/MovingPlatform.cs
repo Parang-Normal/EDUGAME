@@ -14,12 +14,14 @@ public class MovingPlatform : Platform
     public Axis Direction;
     public bool Activated = false;
     public bool Automatic = false;
+    public bool Bounce = true;
     public Vector3 MaxDistance = new Vector3(0, 0, 0);
     public Vector3 Velocity = new Vector3(0, 0, 0);
 
     private Vector3 originalPosition;
     private Vector3 distance;
     private int direction = 1;
+    private int prevDirection = 0;
     private bool hasPlayer = false;
 
     private void OnValidate()
@@ -32,32 +34,95 @@ public class MovingPlatform : Platform
     {
         originalPosition = gameObject.transform.position;
         distance = MaxDistance + originalPosition;
+        prevDirection = direction;
     }
 
     private void Update()
     {
-        if (Activated && (hasPlayer || Automatic))
+        if (Activated)
         {
-            transform.position += (Velocity * Time.deltaTime * direction);
-
-            if(Direction == Axis.Horizontal)
+            if (Automatic || hasPlayer)
             {
-                if (transform.position.x >= distance.x)
-                    direction = -1;
-
-                else if (transform.position.x <= originalPosition.x)
-                    direction = 1;
+                MovePlatform();
             }
-            else if(Direction == Axis.Vertical)
+            else if (!hasPlayer && !Bounce)
             {
-                if (transform.position.y >= distance.y)
-                    direction = -1;
-
-                else if (transform.position.y <= originalPosition.y)
-                    direction = 1;
+                ResetPlatform();
             }
-
         }
+    }
+
+    private void MovePlatform()
+    {
+        direction = prevDirection;
+
+        if (Direction == Axis.Horizontal)
+        {
+            if (transform.position.x > distance.x)
+            {
+                if (Bounce)
+                {
+                    direction = -1;
+                    prevDirection = direction;
+                }
+                else
+                    direction = 0;
+            }
+            else if (transform.position.x < originalPosition.x)
+            {
+                if (Bounce)
+                {
+                    direction = 1;
+                    prevDirection = direction;
+                }
+                else
+                    direction = 0;
+            }
+        }
+
+        else if (Direction == Axis.Vertical)
+        {
+            if(transform.position.y > distance.y)
+            {
+                if (Bounce)
+                {
+                    direction = -1;
+                    prevDirection = direction;
+                }
+                else
+                    direction = 0;
+            }
+            else if(transform.position.y < originalPosition.y)
+            {
+                if (Bounce)
+                {
+                    direction = 1;
+                    prevDirection = direction;
+                }
+                else
+                    direction = 0;
+                
+            }
+        }
+
+
+        transform.position += (Velocity * Time.deltaTime * direction);
+    }
+
+    private void ResetPlatform()
+    {
+        direction = -1;
+
+        if (Direction == Axis.Horizontal && transform.position.x <= originalPosition.x)
+        {
+            direction = 0;
+        }
+        else if (Direction == Axis.Vertical && transform.position.y <= originalPosition.y)
+        {
+            direction = 0;
+        }
+
+        transform.position += (Velocity * Time.deltaTime * direction);
     }
 
     public override void ToggleActivate(bool activate, Operations Operation)

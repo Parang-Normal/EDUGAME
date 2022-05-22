@@ -128,16 +128,16 @@ public class ProblemStatsDrawer : PropertyDrawer
         valueRect = new Rect(NewPos.x + NewPos.width * 0.85f, position.y + height * offset, NewPos.width * 0.15f, height);
 
         EditorGUI.PrefixLabel(minRectLabel, GUIUtility.GetControlID(FocusType.Passive), new GUIContent("Min"));
-        if (probProperty.intValue == (int)MissingNumber.Result)
+        //if (probProperty.intValue == (int)MissingNumber.Result)
             EditorGUI.PropertyField(minRect, minProperty, GUIContent.none);
-        else
-            EditorGUI.LabelField(minRect, GUIContent.none, new GUIContent(minProperty.intValue.ToString()));
+        //else
+        //    EditorGUI.LabelField(minRect, GUIContent.none, new GUIContent(minProperty.intValue.ToString()));
 
         EditorGUI.PrefixLabel(maxRectLabel, GUIUtility.GetControlID(FocusType.Passive), new GUIContent("Max"));
-        if (probProperty.intValue == (int)MissingNumber.Result)
+        //if (probProperty.intValue == (int)MissingNumber.Result)
             EditorGUI.PropertyField(maxRect, maxProperty, GUIContent.none);
-        else
-            EditorGUI.LabelField(maxRect, GUIContent.none, new GUIContent(maxProperty.intValue.ToString()));
+        //else
+        //    EditorGUI.LabelField(maxRect, GUIContent.none, new GUIContent(maxProperty.intValue.ToString()));
 
         EditorGUI.PrefixLabel(valueRectLabel, GUIUtility.GetControlID(FocusType.Passive), new GUIContent("Value"));
         EditorGUI.LabelField(valueRect, GUIContent.none, new GUIContent(valueProperty.intValue.ToString()));

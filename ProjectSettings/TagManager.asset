@@ -5,12 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - CameraShift
-  - Key
   - Generator
   - Land
   - KillZ
   - Wall
   - Enemy
+  - Interactable
   layers:
   - Default
   - TransparentFX
@@ -23,7 +23,7 @@ TagManager:
   - Land
   - Generator
   - Player
-  - Key
+  - Interactable
   - 
   - 
   - 

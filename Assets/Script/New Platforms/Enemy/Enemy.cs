@@ -61,7 +61,7 @@ public class Enemy : MonoBehaviour
         //If colliding with player
         else if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Hit!");
+            //Add logic here
         }
     }
 

@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class DigitBlock : MonoBehaviour
 {
-    public DigitAssets DigitBlockAssets;
+    //public DigitAssets DigitBlockAssets;
     public DigitStats Properties;
 
-    private ProblemGenerator Generator;
-    private SpriteRenderer sprite;
-    private TextMesh text;
+    protected ProblemGenerator Generator;
+    protected SpriteRenderer sprite;
+    protected TextMesh text;
 
     private void Awake()
     {
@@ -22,6 +22,7 @@ public class DigitBlock : MonoBehaviour
     {
         Properties.Value = value;
         text.text = Properties.Value.ToString();
+        Generator.Check();
     }
 
     public int GetValue()
@@ -29,16 +30,14 @@ public class DigitBlock : MonoBehaviour
         return Properties.Value;
     }
 
-    public void SetInteractable(bool isInteractable)
+    public void Add(int value)
     {
-        Properties.Interactable = isInteractable;
-
-        if (isInteractable)
-            sprite.sprite = DigitBlockAssets.Interactable;
-        else
-            sprite.sprite = DigitBlockAssets.NonInteractable;
+        Properties.Value += value; 
+        text.text = Properties.Value.ToString();
+        Generator.Check();
     }
 
+    /*
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //If colliding with player and is interactable
@@ -48,4 +47,5 @@ public class DigitBlock : MonoBehaviour
             Generator.Check();
         }
     }
+    */
 }

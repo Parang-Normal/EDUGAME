@@ -5,8 +5,7 @@ using UnityEngine;
 public enum MissingNumber
 {
     FirstDigit,
-    SecondDigit, 
-    Result
+    SecondDigit
 }
 
 [System.Serializable]
