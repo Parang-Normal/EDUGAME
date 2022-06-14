@@ -6,7 +6,7 @@ using UnityEditor;
 [CustomPropertyDrawer(typeof(ProblemStats))]
 public class ProblemStatsDrawer : PropertyDrawer
 {
-    int lines = 6;
+    int lines = 9;
     int offset = 0;
 
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
@@ -18,18 +18,33 @@ public class ProblemStatsDrawer : PropertyDrawer
 
         SerializedProperty probProperty = property.FindPropertyRelative("Problem");
         SerializedProperty opProperty = property.FindPropertyRelative("Operation");
-        SerializedProperty minProperty;
-        SerializedProperty maxProperty;
-        SerializedProperty valueProperty;
+        SerializedProperty useDivProperty = property.FindPropertyRelative("UseDivisibility");
+        SerializedProperty divProperty = property.FindPropertyRelative("Divisor");
+        SerializedProperty incrementProperty = property.FindPropertyRelative("Increment");
+        SerializedProperty minProperty, maxProperty;
         
-        Rect digitRect;
-        Rect NewPos;
-        Rect minRectLabel;
-        Rect minRect;
-        Rect maxRectLabel;
-        Rect maxRect;
-        Rect valueRectLabel;
-        Rect valueRect;
+        Rect digitRect, NewPos;
+        Rect minRectLabel, minRect;
+        Rect maxRectLabel, maxRect;
+        Rect incrementRectLabel, valuesLabel;
+        Rect divRectLabel, divRect;
+        Rect useDivRectLabel, useDivRect;
+
+        GUIContent minContent = new GUIContent();
+        minContent.text = "Min";
+        minContent.tooltip = "Min value to randomize";
+
+        GUIContent maxContent = new GUIContent();
+        maxContent.text = "Max";
+        maxContent.tooltip = "Max value to randomize";
+
+        GUIContent incrementContent = new GUIContent();
+        incrementContent.text = "Increment";
+        incrementContent.tooltip = "Value to increment";
+
+        GUIContent divContent = new GUIContent();
+        divContent.text = "Div";
+        divContent.tooltip = "Divisor";
 
         //Problem
         Rect probRect = new Rect(position.x, position.y + height * 1, position.width, height);
@@ -41,12 +56,22 @@ public class ProblemStatsDrawer : PropertyDrawer
 
         int indent = EditorGUI.indentLevel;
 
+        //Values label
+        offset = 3;
+        valuesLabel = new Rect(position.x, position.y + height * offset, position.width, height);
+        EditorGUI.PrefixLabel(valuesLabel, GUIUtility.GetControlID(FocusType.Passive), new GUIContent("Values"));
+
+        //Increment
+        offset++;
+        incrementRectLabel = new Rect(position.x, position.y + height * offset, position.width, height);
+        NewPos = EditorGUI.PrefixLabel(incrementRectLabel, GUIUtility.GetControlID(FocusType.Passive), incrementContent);
+        EditorGUI.PropertyField(NewPos, incrementProperty, GUIContent.none);
+
         //First Digit
         minProperty = property.FindPropertyRelative("FirstDigit_MinValue");
         maxProperty = property.FindPropertyRelative("FirstDigit_MaxValue");
-        valueProperty = property.FindPropertyRelative("FirstDigit_Value");
 
-        offset = 3;
+        offset++;
         digitRect = new Rect(position.x, position.y + height * offset, position.width, height);
         NewPos = EditorGUI.PrefixLabel(digitRect, GUIUtility.GetControlID(FocusType.Passive), new GUIContent("First Digit"));
        
@@ -54,33 +79,27 @@ public class ProblemStatsDrawer : PropertyDrawer
 
         minRectLabel = new Rect(NewPos.x, position.y + height * offset, NewPos.width * 0.1f, height);
         minRect = new Rect(NewPos.x + NewPos.width * 0.15f, position.y + height * offset, NewPos.width * 0.15f, height);
-        maxRectLabel = new Rect(NewPos.x + NewPos.width * 0.35f, position.y + height * offset, NewPos.width * 0.1f, height);
-        maxRect = new Rect(NewPos.x + NewPos.width * 0.5f, position.y + height * offset, NewPos.width * 0.15f, height);
-        valueRectLabel = new Rect(NewPos.x + NewPos.width * 0.7f, position.y + height * offset, NewPos.width * 0.1f, height);
-        valueRect = new Rect(NewPos.x + NewPos.width * 0.85f, position.y + height * offset, NewPos.width * 0.15f, height);
+        maxRectLabel = new Rect(NewPos.x + NewPos.width * 0.5f, position.y + height * offset, NewPos.width * 0.1f, height);
+        maxRect = new Rect(NewPos.x + NewPos.width * 0.65f, position.y + height * offset, NewPos.width * 0.15f, height);
 
-        EditorGUI.PrefixLabel(minRectLabel, GUIUtility.GetControlID(FocusType.Passive), new GUIContent("Min"));
+        EditorGUI.PrefixLabel(minRectLabel, GUIUtility.GetControlID(FocusType.Passive), minContent);
         if (probProperty.intValue != (int)MissingNumber.FirstDigit)
             EditorGUI.PropertyField(minRect, minProperty, GUIContent.none);
         else
             EditorGUI.LabelField(minRect, GUIContent.none, new GUIContent(minProperty.intValue.ToString()));
 
-        EditorGUI.PrefixLabel(maxRectLabel, GUIUtility.GetControlID(FocusType.Passive), new GUIContent("Max"));
+        EditorGUI.PrefixLabel(maxRectLabel, GUIUtility.GetControlID(FocusType.Passive), maxContent);
         if (probProperty.intValue != (int)MissingNumber.FirstDigit)
             EditorGUI.PropertyField(maxRect, maxProperty, GUIContent.none);
         else
             EditorGUI.LabelField(maxRect, GUIContent.none, new GUIContent(maxProperty.intValue.ToString()));
-
-        EditorGUI.PrefixLabel(valueRectLabel, GUIUtility.GetControlID(FocusType.Passive), new GUIContent("Value"));
-        EditorGUI.LabelField(valueRect, GUIContent.none, new GUIContent(valueProperty.intValue.ToString()));
         //End of First Digit
 
         //Second Digit
         minProperty = property.FindPropertyRelative("SecondDigit_MinValue");
         maxProperty = property.FindPropertyRelative("SecondDigit_MaxValue");
-        valueProperty = property.FindPropertyRelative("SecondDigit_Value");
 
-        offset = 4;
+        offset++;
         digitRect = new Rect(position.x, position.y + height * offset, position.width, height);
         NewPos = EditorGUI.PrefixLabel(digitRect, GUIUtility.GetControlID(FocusType.Passive), new GUIContent("Second Digit"));
 
@@ -88,33 +107,27 @@ public class ProblemStatsDrawer : PropertyDrawer
 
         minRectLabel = new Rect(NewPos.x, position.y + height * offset, NewPos.width * 0.1f, height);
         minRect = new Rect(NewPos.x + NewPos.width * 0.15f, position.y + height * offset, NewPos.width * 0.15f, height);
-        maxRectLabel = new Rect(NewPos.x + NewPos.width * 0.35f, position.y + height * offset, NewPos.width * 0.1f, height);
-        maxRect = new Rect(NewPos.x + NewPos.width * 0.5f, position.y + height * offset, NewPos.width * 0.15f, height);
-        valueRectLabel = new Rect(NewPos.x + NewPos.width * 0.7f, position.y + height * offset, NewPos.width * 0.1f, height);
-        valueRect = new Rect(NewPos.x + NewPos.width * 0.85f, position.y + height * offset, NewPos.width * 0.15f, height);
+        maxRectLabel = new Rect(NewPos.x + NewPos.width * 0.5f, position.y + height * offset, NewPos.width * 0.1f, height);
+        maxRect = new Rect(NewPos.x + NewPos.width * 0.65f, position.y + height * offset, NewPos.width * 0.15f, height);
 
-        EditorGUI.PrefixLabel(minRectLabel, GUIUtility.GetControlID(FocusType.Passive), new GUIContent("Min"));
+        EditorGUI.PrefixLabel(minRectLabel, GUIUtility.GetControlID(FocusType.Passive), minContent);
         if (probProperty.intValue != (int)MissingNumber.SecondDigit)
             EditorGUI.PropertyField(minRect, minProperty, GUIContent.none);
         else
             EditorGUI.LabelField(minRect, GUIContent.none, new GUIContent(minProperty.intValue.ToString()));
 
-        EditorGUI.PrefixLabel(maxRectLabel, GUIUtility.GetControlID(FocusType.Passive), new GUIContent("Max"));
+        EditorGUI.PrefixLabel(maxRectLabel, GUIUtility.GetControlID(FocusType.Passive), maxContent);
         if (probProperty.intValue != (int)MissingNumber.SecondDigit)
             EditorGUI.PropertyField(maxRect, maxProperty, GUIContent.none);
         else
             EditorGUI.LabelField(maxRect, GUIContent.none, new GUIContent(maxProperty.intValue.ToString()));
-
-        EditorGUI.PrefixLabel(valueRectLabel, GUIUtility.GetControlID(FocusType.Passive), new GUIContent("Value"));
-        EditorGUI.LabelField(valueRect, GUIContent.none, new GUIContent(valueProperty.intValue.ToString()));
         //End of Second Digit
 
         //Result
         minProperty = property.FindPropertyRelative("Result_MinValue");
         maxProperty = property.FindPropertyRelative("Result_MaxValue");
-        valueProperty = property.FindPropertyRelative("Result_Value");
 
-        offset = 5;
+        offset++;
         digitRect = new Rect(position.x, position.y + height * offset, position.width, height);
         NewPos = EditorGUI.PrefixLabel(digitRect, GUIUtility.GetControlID(FocusType.Passive), new GUIContent("Result"));
 
@@ -122,26 +135,37 @@ public class ProblemStatsDrawer : PropertyDrawer
 
         minRectLabel = new Rect(NewPos.x, position.y + height * offset, NewPos.width * 0.1f, height);
         minRect = new Rect(NewPos.x + NewPos.width * 0.15f, position.y + height * offset, NewPos.width * 0.15f, height);
-        maxRectLabel = new Rect(NewPos.x + NewPos.width * 0.35f, position.y + height * offset, NewPos.width * 0.1f, height);
-        maxRect = new Rect(NewPos.x + NewPos.width * 0.5f, position.y + height * offset, NewPos.width * 0.15f, height);
-        valueRectLabel = new Rect(NewPos.x + NewPos.width * 0.7f, position.y + height * offset, NewPos.width * 0.1f, height);
-        valueRect = new Rect(NewPos.x + NewPos.width * 0.85f, position.y + height * offset, NewPos.width * 0.15f, height);
+        maxRectLabel = new Rect(NewPos.x + NewPos.width * 0.5f, position.y + height * offset, NewPos.width * 0.1f, height);
+        maxRect = new Rect(NewPos.x + NewPos.width * 0.65f, position.y + height * offset, NewPos.width * 0.15f, height);
 
-        EditorGUI.PrefixLabel(minRectLabel, GUIUtility.GetControlID(FocusType.Passive), new GUIContent("Min"));
-        //if (probProperty.intValue == (int)MissingNumber.Result)
-            EditorGUI.PropertyField(minRect, minProperty, GUIContent.none);
-        //else
-        //    EditorGUI.LabelField(minRect, GUIContent.none, new GUIContent(minProperty.intValue.ToString()));
+        EditorGUI.PrefixLabel(minRectLabel, GUIUtility.GetControlID(FocusType.Passive), minContent);
+        EditorGUI.PropertyField(minRect, minProperty, GUIContent.none);
 
-        EditorGUI.PrefixLabel(maxRectLabel, GUIUtility.GetControlID(FocusType.Passive), new GUIContent("Max"));
-        //if (probProperty.intValue == (int)MissingNumber.Result)
-            EditorGUI.PropertyField(maxRect, maxProperty, GUIContent.none);
-        //else
-        //    EditorGUI.LabelField(maxRect, GUIContent.none, new GUIContent(maxProperty.intValue.ToString()));
-
-        EditorGUI.PrefixLabel(valueRectLabel, GUIUtility.GetControlID(FocusType.Passive), new GUIContent("Value"));
-        EditorGUI.LabelField(valueRect, GUIContent.none, new GUIContent(valueProperty.intValue.ToString()));
+        EditorGUI.PrefixLabel(maxRectLabel, GUIUtility.GetControlID(FocusType.Passive), maxContent);
+        EditorGUI.PropertyField(maxRect, maxProperty, GUIContent.none);
         //End of Result
+
+        //Divisor
+        offset++;
+        digitRect = new Rect(position.x, position.y + height * offset, position.width, height);
+        NewPos = EditorGUI.PrefixLabel(digitRect, GUIUtility.GetControlID(FocusType.Passive), new GUIContent("Divisbility"));
+
+        EditorGUI.indentLevel = 0;
+
+        useDivRectLabel = new Rect(NewPos.x, position.y + height * offset, NewPos.width * 0.1f, height);
+        useDivRect = new Rect(NewPos.x + NewPos.width * 0.15f, position.y + height * offset, NewPos.width * 0.15f, height);
+        divRectLabel = new Rect(NewPos.x + NewPos.width * 0.5f, position.y + height * offset, NewPos.width * 0.1f, height);
+        divRect = new Rect(NewPos.x + NewPos.width * 0.65f, position.y + height * offset, NewPos.width * 0.15f, height);
+
+        EditorGUI.PrefixLabel(useDivRectLabel, GUIUtility.GetControlID(FocusType.Passive), new GUIContent("Use"));
+        EditorGUI.PropertyField(useDivRect, useDivProperty, GUIContent.none);
+
+        if(useDivProperty.boolValue == true)
+        {
+            EditorGUI.PrefixLabel(divRectLabel, GUIUtility.GetControlID(FocusType.Passive), divContent);
+            EditorGUI.PropertyField(divRect, divProperty, GUIContent.none);
+        }
+        //End of Divisor
 
         EditorGUI.indentLevel = indent;
         EditorGUI.EndProperty();

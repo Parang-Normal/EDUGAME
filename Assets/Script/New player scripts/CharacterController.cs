@@ -26,15 +26,25 @@ public class CharacterController : MonoBehaviour
     public InteractableObject interactableObj { private set; get; }
     Animator anim;
 
+    private void Awake()
+    {
+        anim = gameObject.GetComponent<Animator>();
+
+        if (PlayerPrefs.GetInt("DuckyHat_Equipped", 0) == 1)
+            anim.SetBool("DuckyHat", true);
+        else
+            anim.SetBool("DuckyHat", false);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        anim = gameObject.GetComponent<Animator>();
 
         jump = false;
         onGround = true;
 
-        GameMode.Instance.SpawnPosition = gameObject.transform.position;
+        if(GameMode.Instance != null)
+            GameMode.Instance.SpawnPosition = gameObject.transform.position;
     }
     void ProcessInput()
     {

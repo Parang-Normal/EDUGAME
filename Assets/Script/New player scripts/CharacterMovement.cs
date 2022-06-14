@@ -30,6 +30,7 @@ public class CharacterMovement : MonoBehaviour
         {
             rb.AddForce(new Vector2(0, JumpForce));
             Controller.jump = false;
+            //SoundManager.Instance.PlaySFX(SFXClip.Jump);
         }
 
         //Go Left
@@ -38,6 +39,7 @@ public class CharacterMovement : MonoBehaviour
             initialV = -1;
             gameObject.GetComponent<SpriteRenderer>().flipX = true;
             Controller.DoAnimation("Running", true);
+            //SoundManager.Instance.PlaySFX(SFXClip.PlayerWalk);
         }
         //Go Right
         else if (direction.x > 0 || axis > 0)
@@ -45,6 +47,7 @@ public class CharacterMovement : MonoBehaviour
             initialV = 1;
             gameObject.GetComponent<SpriteRenderer>().flipX = false;
             Controller.DoAnimation("Running", true);
+            //SoundManager.Instance.PlaySFX(SFXClip.PlayerWalk);
         }
         //Stop
         else

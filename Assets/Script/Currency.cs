@@ -8,6 +8,7 @@ public class Currency : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
+            SoundManager.Instance.PlaySFX(SFXClip.Fragment);
             GameMode.Instance.UpdateGems(1);
             Destroy(gameObject);
         }

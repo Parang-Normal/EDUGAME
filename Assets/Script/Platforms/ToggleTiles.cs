@@ -11,11 +11,14 @@ public class ToggleTiles : Platform
     private SpriteRenderer spriteRenderer;
     private BoxCollider2D boxCollider;
 
-    private void Start()
+    private void Awake()
     {
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         boxCollider = gameObject.GetComponent<BoxCollider2D>();
-        // boxCollider.enabled = !IsInvisible;
+    }
+
+    private void Start()
+    {
         ToggleSprite(!IsInvisible);
     }
 

@@ -2,6 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum SFXClip
+{
+    Jump,
+    Fragment,
+    Win,
+    Lose,
+    PlayerWalk,
+    BotWalk
+}
 
 public class SoundManager : MonoBehaviour
 {
@@ -42,6 +51,38 @@ public class SoundManager : MonoBehaviour
         SFXPlayer.loop = true;
         SFXPlayer.Play();
         */
+    }
+
+    public void PlaySFX(SFXClip label)
+    {
+        switch (label)
+        {
+            case SFXClip.Jump:
+                SFXPlayer.clip = SFXList[2];
+                break;
+
+            case SFXClip.Fragment:
+                SFXPlayer.clip = SFXList[1];
+                break;
+
+            case SFXClip.Win:
+                SFXPlayer.clip = SFXList[6];
+                break;
+
+            case SFXClip.Lose:
+                SFXPlayer.clip = SFXList[3];
+                break;
+
+            case SFXClip.PlayerWalk:
+                SFXPlayer.clip = SFXList[4];
+                break;
+
+            case SFXClip.BotWalk:
+                SFXPlayer.clip = SFXList[5];
+                break;
+        }
+
+        SFXPlayer.Play();
     }
 
     public void MuteMusic(bool mute)

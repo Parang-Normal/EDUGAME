@@ -69,6 +69,7 @@ public class OperationBlock : MonoBehaviour
 
                     Operation = inventoryCopy;
                     GameMode.Instance.UpdateItem(localCopy);
+                    ChangeSprite(Operation);
                 }
 
                 ParentGenerator.CheckOperations();
@@ -85,6 +86,8 @@ public class OperationBlock : MonoBehaviour
                     HasKey = false;
                     Renderer.sprite = EmptySprite;
                     Operation = Operations.NULL;
+
+                    ParentGenerator.CheckOperations();
                 }
             }
         }

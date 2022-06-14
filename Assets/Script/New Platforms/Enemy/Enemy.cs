@@ -46,6 +46,7 @@ public class Enemy : MonoBehaviour
     
         CheckDirection();
 
+        //SoundManager.Instance.PlaySFX(SFXClip.BotWalk);
         transform.position += Velocity * Time.deltaTime;
     }
 

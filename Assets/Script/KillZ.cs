@@ -18,6 +18,7 @@ public class KillZ : MonoBehaviour
             else
             {
                 GameMode.Instance.CountTime = false;
+                SoundManager.Instance.PlaySFX(SFXClip.Lose);
                 Instantiate(DefeatUI);
             }
         }

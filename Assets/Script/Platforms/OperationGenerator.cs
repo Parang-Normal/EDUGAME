@@ -5,6 +5,8 @@ using UnityEngine;
 [System.Serializable]
 public class PrefabAssts
 {
+    public Sprite ActivatedSyber;
+    public Sprite DeactivatedSyber;
     public GameObject NumberBlockPrefab;
     public GameObject OperationBlockPrefab;
     public Transform EquationTransform;
@@ -20,6 +22,13 @@ public class OperationGenerator : MonoBehaviour
     public GameObject Portal;
     public List<OperationBlock> BlockList;
     public List<GameObject> ChildList;
+
+    private SpriteRenderer spriteRenderer;
+
+    private void Awake()
+    {
+        spriteRenderer = transform.Find("Result").GetComponent<SpriteRenderer>();
+    }
 
     public void initialize()
     {
@@ -95,7 +104,12 @@ public class OperationGenerator : MonoBehaviour
         {
             //Activate end portal
             Portal.SetActive(true);
-            Debug.Log("Activate portal");
+            spriteRenderer.sprite = Dependencies.ActivatedSyber;
+        }
+        else
+        {
+            Portal.SetActive(false);
+            spriteRenderer.sprite = Dependencies.DeactivatedSyber;
         }
     }
 

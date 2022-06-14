@@ -10,8 +10,7 @@ public class Portal : MonoBehaviour
     {
         if (collision.gameObject.layer == 10)
         {
-            GameMode.Instance.CountTime = false;
-            GameMode.Instance.Elements.HUD.SetActive(false);
+            GameMode.Instance.FinishLevel();
             Instantiate(VictoryUI);
         }
     }

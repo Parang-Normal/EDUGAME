@@ -22,7 +22,10 @@ public class UIActions : MonoBehaviour
 
     public void NextLevel()
     {
-        SceneManager.LoadScene(GameMode.Instance.NextLevel);
+        if(GameMode.Instance != null)
+            SceneManager.LoadScene(GameMode.Instance.NextLevel);
+        else if(BossLevelManager.Instance != null)
+            SceneManager.LoadScene(BossLevelManager.Instance.NextLevel);
     }
 
     public void LoadLevel(string LevelName)
@@ -33,7 +36,9 @@ public class UIActions : MonoBehaviour
     public void ReloadLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        GameMode.Instance.ResetTimer();
+
+        if(GameMode.Instance != null)
+            GameMode.Instance.ResetTimer();
     }
 
     public void ToggleMusic()

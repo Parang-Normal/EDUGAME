@@ -45,6 +45,12 @@ public class CharacterColliderController : MonoBehaviour
         {
             Controller.UpdateGroundStatus(enter);
         }
+
+        //If hit by enemy
+        else if(collider.CompareTag("Enemy") && enter)
+        {
+            Die();
+        }
         
         else
         {
@@ -62,15 +68,20 @@ public class CharacterColliderController : MonoBehaviour
         //if it entered a kill zone
         else if (collider.CompareTag("KillZ") && enter)
         {
-            if (GameMode.Instance.Lives > 1)
-            {
-                GameMode.Instance.PlayerDied();
-            }
-            else
-            {
-                GameMode.Instance.CountTime = false;
-                Controller.Defeat();
-            }
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        if (GameMode.Instance.Lives > 1)
+        {
+            GameMode.Instance.PlayerDied();
+        }
+        else
+        {
+            GameMode.Instance.CountTime = false;
+            Controller.Defeat();
         }
     }
 }

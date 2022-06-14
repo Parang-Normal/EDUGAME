@@ -224,6 +224,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Properties:
     Value: 0
+    Increment: 0
     Interactable: 0
   DigitBlockAssets:
     Interactable: {fileID: 21300000, guid: 3c844ee202033e74088349f26559a07d, type: 3}
@@ -412,17 +413,20 @@ MonoBehaviour:
     Multifly: {fileID: 21300000, guid: cd26ddfb3b4c83044b2db69ec2c2bfd7, type: 3}
     TheVoid: {fileID: 21300000, guid: 08886cc63f3fd9d4ebf37cfafd084fad, type: 3}
   Properties:
-    Problem: 1
+    Problem: 0
     Operation: 1
     FirstDigit_MinValue: 0
-    FirstDigit_MaxValue: 5
+    FirstDigit_MaxValue: 0
     FirstDigit_Value: 1
     SecondDigit_MinValue: 0
-    SecondDigit_MaxValue: 5
+    SecondDigit_MaxValue: 0
     SecondDigit_Value: 0
-    Result_MinValue: 5
-    Result_MaxValue: 10
+    Result_MinValue: 0
+    Result_MaxValue: 0
     Result_Value: 0
+    UseDivisibility: 0
+    Divisor: 0
+    Increment: 1
 --- !u!1 &5944412486480493140
 GameObject:
   m_ObjectHideFlags: 0
@@ -523,6 +527,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Properties:
     Value: 0
+    Increment: 0
     Interactable: 0
   ResultBlockAssets:
     CorrectAnswer: {fileID: 21300000, guid: 2bc3bf03dc3c5b04292f5c69c8c4dfad, type: 3}
@@ -738,6 +743,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Properties:
     Value: 0
+    Increment: 0
     Interactable: 0
   DigitBlockAssets:
     Interactable: {fileID: 21300000, guid: 3c844ee202033e74088349f26559a07d, type: 3}
@@ -769,8 +775,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5944412486573732009}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.07, y: -4.18, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalPosition: {x: 0.07, y: -3.97, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5944412486315877828}
@@ -817,7 +823,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5532431876b83f1419421fd00dff9a2e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 88f745661414a4a4ea2df71ca72880ea, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -841,18 +847,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.000000029802322, y: -0.08124632}
+  m_Offset: {x: -0.005609393, y: -0.31973505}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.28, y: 1.28}
+    oldSize: {x: 2.56, y: 2.56}
     newSize: {x: 1.28, y: 1.28}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1104429, y: 0.6936146}
+  m_Size: {x: 1.2922788, y: 1.7634678}
   m_EdgeRadius: 0
 --- !u!114 &5944412486573732013
 MonoBehaviour:

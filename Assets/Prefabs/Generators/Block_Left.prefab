@@ -125,5 +125,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InvisibleSprite: {fileID: 21300000, guid: 699d4769c6bd0534dbafba1c0c535c03, type: 3}
-  SolidSprite: {fileID: 21300000, guid: eb30152f410b9eb46ad2176eafda31f0, type: 3}
+  SolidSprite: {fileID: 21300000, guid: fc02ca3a9348b5c47ac9b0b27f237e9a, type: 3}
   IsInvisible: 1

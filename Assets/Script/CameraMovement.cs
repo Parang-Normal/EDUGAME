@@ -12,7 +12,8 @@ public class CameraMovement : MonoBehaviour
 
     private void Start()
     {
-        GameMode.Instance.CameraMinY = MinY;
+        if(GameMode.Instance != null)
+            GameMode.Instance.CameraMinY = MinY;
     }
 
     private void FixedUpdate()

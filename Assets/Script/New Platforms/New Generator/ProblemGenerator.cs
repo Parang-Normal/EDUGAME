@@ -35,42 +35,83 @@ public class ProblemGenerator : MonoBehaviour
     //Depends on what digit must be solved by the player
     private void Randomize()
     {
+        int answerRand = 0, resultRand = 0;
+
         switch (Properties.Problem)
         {
             //First digit must be solved
-            case MissingNumber.FirstDigit:
-                Properties.SecondDigit_Value = Random.Range(Properties.SecondDigit_MinValue, Properties.SecondDigit_MaxValue);
-                Properties.Result_Value = Random.Range(Properties.Result_MinValue, Properties.Result_MaxValue);
+            case MissingNumber.FirstDigit:Random.Range(Properties.SecondDigit_MinValue, Properties.SecondDigit_MaxValue);
+
+                answerRand = Random.Range(Properties.SecondDigit_MinValue, Properties.SecondDigit_MaxValue);
+                resultRand = Random.Range(Properties.Result_MinValue, Properties.Result_MaxValue);
+                if(Properties.Operation == Operations.Addition || Properties.Operation == Operations.Subtraction)
+                {
+                    while (answerRand == resultRand || answerRand == 0 || resultRand == 0)
+                    {
+                        answerRand = Random.Range(Properties.SecondDigit_MinValue, Properties.SecondDigit_MaxValue);
+                        resultRand = Random.Range(Properties.Result_MinValue, Properties.Result_MaxValue);
+                    }
+                }
+
+                //Using divisibility
+                if (Properties.UseDivisibility)
+                {
+                    if (Properties.Operation == Operations.Multiplication)
+                        Properties.SecondDigit_Value = Properties.Divisor;
+                    else
+                        Properties.SecondDigit_Value = answerRand * Properties.Divisor;
+
+                    Properties.Result_Value = resultRand * Properties.Divisor;
+                }
+                //Not using divisibility
+                else
+                {
+                    Properties.SecondDigit_Value = answerRand;
+                    Properties.Result_Value = resultRand;
+                }
 
                 FirstDigit.SetInteractable(true);
+                FirstDigit.Properties.Increment = Properties.Increment;
                 SecondDigit.SetValue(Properties.SecondDigit_Value);
                 Result.SetValue(Properties.Result_Value);
                 break;
 
             //Second digit must be solved
             case MissingNumber.SecondDigit:
-                Properties.FirstDigit_Value = Random.Range(Properties.FirstDigit_MinValue, Properties.FirstDigit_MaxValue);
-                Properties.Result_Value = Random.Range(Properties.Result_MinValue, Properties.Result_MaxValue);
+
+                answerRand = Random.Range(Properties.FirstDigit_MinValue, Properties.FirstDigit_MaxValue);
+                resultRand = Random.Range(Properties.Result_MinValue, Properties.Result_MaxValue);
+                if (Properties.Operation == Operations.Addition || Properties.Operation == Operations.Subtraction)
+                {
+                    while (answerRand == resultRand || answerRand == 0 || resultRand == 0)
+                    {
+                        answerRand = Random.Range(Properties.FirstDigit_MinValue, Properties.FirstDigit_MaxValue);
+                        resultRand = Random.Range(Properties.Result_MinValue, Properties.Result_MaxValue);
+                    }
+                }
+
+                //Using divisibility
+                if (Properties.UseDivisibility)
+                {
+                    if (Properties.Operation == Operations.Multiplication)
+                        Properties.FirstDigit_Value = Properties.Divisor;
+                    else
+                        Properties.FirstDigit_Value = answerRand * Properties.Divisor;
+
+                    Properties.Result_Value = resultRand * Properties.Divisor;
+                }
+                //Not using divisibility
+                else
+                {
+                    Properties.FirstDigit_Value = answerRand;
+                    Properties.Result_Value = resultRand;
+                }
 
                 SecondDigit.SetInteractable(true);
+                SecondDigit.Properties.Increment = Properties.Increment;
                 FirstDigit.SetValue(Properties.FirstDigit_Value);
                 Result.SetValue(Properties.Result_Value);
                 break;
-
-                /*
-            //Result must be solved
-            case MissingNumber.Result:
-                Properties.FirstDigit_Value = Random.Range(Properties.FirstDigit_MinValue, Properties.FirstDigit_MaxValue);
-                Properties.SecondDigit_Value = Random.Range(Properties.SecondDigit_MinValue, Properties.SecondDigit_MaxValue);
-                Properties.Result_Value = Random.Range(Properties.Result_MinValue, Properties.Result_MaxValue);
-
-                FirstDigit.SetInteractable(true);
-                SecondDigit.SetInteractable(true);
-                FirstDigit.SetValue(Properties.FirstDigit_Value);
-                SecondDigit.SetValue(Properties.SecondDigit_Value);
-                Result.SetValue(Properties.Result_Value);
-                break;
-                */
         }
     }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 [System.Serializable]
 public class GameElements
 {
@@ -74,6 +75,38 @@ public class GameMode : MonoBehaviour
         }
     }
 
+    private void UpdateItemSprite()
+    {
+        switch (Operation)
+        {
+            case Operations.NULL:
+                Item.sprite = null;
+                Item.color = Color.clear;
+                break;
+
+            case Operations.Addition:
+                Item.sprite = OperationAssets.Addicus;
+                Item.color = Color.white;
+                break;
+
+            case Operations.Subtraction:
+                Item.sprite = OperationAssets.Minium;
+                Item.color = Color.white;
+                break;
+
+            case Operations.Multiplication:
+                Item.sprite = OperationAssets.Multifly;
+                Item.color = Color.white;
+                break;
+
+            case Operations.Division:
+                Item.sprite = OperationAssets.TheVoid;
+                Item.color = Color.white;
+                break;
+
+        }
+    }
+
     public void ResetTimer()
     {
         Seconds = 0;
@@ -136,35 +169,14 @@ public class GameMode : MonoBehaviour
         return op;
     }
 
-    private void UpdateItemSprite()
+    public void FinishLevel()
     {
-        switch (Operation)
-        {
-            case Operations.NULL:
-                Item.sprite = null;
-                Item.color = Color.clear;
-                break;
+        CountTime = false;
+        Elements.HUD.SetActive(false);
+        SoundManager.Instance.PlaySFX(SFXClip.Win);
 
-            case Operations.Addition:
-                Item.sprite = OperationAssets.Addicus;
-                Item.color = Color.white;
-                break;
-
-            case Operations.Subtraction:
-                Item.sprite = OperationAssets.Minium;
-                Item.color = Color.white;
-                break;
-
-            case Operations.Multiplication:
-                Item.sprite = OperationAssets.Multifly;
-                Item.color = Color.white;
-                break;
-
-            case Operations.Division:
-                Item.sprite = OperationAssets.TheVoid;
-                Item.color = Color.white;
-                break;
-
-        }
+        int fragments = PlayerPrefs.GetInt("Fragments", 0);
+        fragments += Gems;
+        PlayerPrefs.SetInt("Fragments", fragments);
     }
 }

@@ -6,5 +6,6 @@ using UnityEngine;
 public class DigitStats
 {
     public int Value = 0;
+    public int Increment = 0;
     public bool Interactable = false;
 }

@@ -43,4 +43,13 @@ public class ProblemStats
 
     [Tooltip("The value of the Result")]
     public int Result_Value = 0;
+
+    [Tooltip("Use Divisibility in randomizing result")]
+    public bool UseDivisibility = false;
+
+    [Tooltip("The divisor of the Result")]
+    public int Divisor = 0;
+
+    [Tooltip("The increment added to active answer block")]
+    public int Increment = 1;
 }

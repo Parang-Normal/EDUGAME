@@ -14,6 +14,6 @@ public class GeneratorBox : InteractableObject
 
     public override void Interact(int value)
     {
-        Block.Add(value);
+        Block.Add(Block.Properties.Increment * value);
     }
 }

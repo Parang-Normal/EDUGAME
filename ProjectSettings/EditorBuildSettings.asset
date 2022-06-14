@@ -9,12 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Final Scenes/MainMenu.unity
     guid: a005b48085159b04c8bf5d8761f04f58
   - enabled: 1
-    path: Assets/Scenes/Final Scenes/TUTORIAL LEVEL.unity
+    path: Assets/Scenes/Final Scenes/TutorialLevel.unity
     guid: fdc33e10663712a4fad63ccfd2bec35c
   - enabled: 1
-    path: Assets/Scenes/Final Scenes/V.3.2 LEVEL 1-1 BY EN.unity
+    path: Assets/Scenes/Final Scenes/Level1-1.unity
     guid: 5f6fd5793d229094eb0ea5b2ca285ec5
   - enabled: 1
-    path: Assets/Scenes/Final Scenes/V.3 .2 LEVEL 1-2 BY EN(REV).unity
+    path: Assets/Scenes/Final Scenes/Level1-2.unity
     guid: 98104cc7f58676b4c86239e7ae6294d8
   m_configObjects: {}
