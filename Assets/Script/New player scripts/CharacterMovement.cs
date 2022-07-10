@@ -37,6 +37,7 @@ public class CharacterMovement : MonoBehaviour
         if (direction.x < 0 || axis < 0)
         {
             initialV = -1;
+            Debug.Log(initialV);
             gameObject.GetComponent<SpriteRenderer>().flipX = true;
             Controller.DoAnimation("Running", true);
             //SoundManager.Instance.PlaySFX(SFXClip.PlayerWalk);
@@ -59,6 +60,7 @@ public class CharacterMovement : MonoBehaviour
         Vector2 temp = new Vector2(initialV, rb.velocity.y);
         float v = initialV * Speed;
         rb.velocity = (new Vector2(v, rb.velocity.y));
+        //Debug.Log(rb.velocity);
         //rb.MovePosition(rb.position + (temp * Speed * Time.fixedDeltaTime));
     }
 

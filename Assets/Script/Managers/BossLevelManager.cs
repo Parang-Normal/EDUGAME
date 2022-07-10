@@ -64,7 +64,9 @@ public class BossLevelManager : MonoBehaviour
     private float RunningTime = 0f;
     private Operations Operation = Operations.Addition;
     private int CorrectAnswer = 0;
-    private int CorrectChoice = 0;
+    private int answer1 = 0;
+    private int answer2 = 0;
+    private List<int> Choices = new List<int>();
 
     private void Awake()
     {
@@ -92,13 +94,11 @@ public class BossLevelManager : MonoBehaviour
         {
             //Reset Values
             CorrectAnswer = 0;
-            CorrectChoice = 0;
 
             //Reset timer
             RunningTime = RoundTimer;
             GameAssets.Timer.value = RunningTime;
             RandomizeProblem();
-
 
             State = GameState.Ongoing;
         }
@@ -122,8 +122,7 @@ public class BossLevelManager : MonoBehaviour
         else if(State == GameState.Finished)
         {
             RunTimer = false;
-            AnimationAssets.PlayerAnim.enabled = false;
-            AnimationAssets.BossAnim.enabled = false;
+            AnimationAssets.BossAnim.gameObject.SetActive(false);
         }
 
         
@@ -137,7 +136,7 @@ public class BossLevelManager : MonoBehaviour
 
     private void GenerateOperation()
     {
-        int Chance = Random.Range(1, 10);
+        int Chance = Random.Range(1, 6);
 
         //30% chance, addition
         if(Chance <= 3)
@@ -153,6 +152,8 @@ public class BossLevelManager : MonoBehaviour
             ProblemAssets.OperationImage.sprite = OperationAssets.Minium;
         }
 
+        /* Need to remove multiplication and division until further notice
+
         //20% chance, multiplication
         else if(Chance > 6 && Chance <= 8)
         {
@@ -166,6 +167,8 @@ public class BossLevelManager : MonoBehaviour
             Operation = Operations.Division;
             ProblemAssets.OperationImage.sprite = OperationAssets.TheVoid;
         }
+
+        */
     }
 
     private void GenerateDigits()
@@ -188,17 +191,26 @@ public class BossLevelManager : MonoBehaviour
         }
 
         //If boss has more than or equal to 80% health, randomize between -9 and 9 (if odd) or -8 and 8 (if even)
-        if (BossLives >= 8)
+        //Single digits only if multiplication and division
+        if (BossLives >= 8 || Operation == Operations.Multiplication || Operation == Operations.Division)
         {
-            firstDigit = (Random.Range(-4, 5) * 2) - OddEvenOffset;
-            secondDigit = (Random.Range(-4, 5) * 2) - OddEvenOffset;
+            //Avoid having equal values
+            while(firstDigit == secondDigit)
+            {
+                firstDigit = (Random.Range(-4, 5) * 2) - OddEvenOffset;
+                secondDigit = (Random.Range(-4, 5) * 2) - OddEvenOffset;
+            }
         }
 
         //If boss has less than 80% health, randomize between -99 and 99 (if odd) or -98 and 98 (if even)
         else
         {
-            firstDigit = (Random.Range(-49, 50) * 2) - OddEvenOffset;
-            secondDigit = (Random.Range(-49, 50) * 2) - OddEvenOffset;
+            //Avoid having equal values
+            while(firstDigit == secondDigit)
+            {
+                firstDigit = (Random.Range(-49, 50) * 2) - OddEvenOffset;
+                secondDigit = (Random.Range(-49, 50) * 2) - OddEvenOffset;
+            }
         }
 
         ProblemAssets.FirstDigitText.text = firstDigit.ToString("0");
@@ -213,8 +225,8 @@ public class BossLevelManager : MonoBehaviour
         int positiveOffset = firstDigit + offset;
         int negativeOffset = firstDigit - offset;
 
-        int answer1 = 0;
-        int answer2 = 0;
+        answer1 = 0;
+        answer2 = 0;
 
         switch (Operation)
         {
@@ -243,12 +255,35 @@ public class BossLevelManager : MonoBehaviour
                 break;
         }
 
-        //Randomize choices
-        ChoicesAssets.Choice1.text = answer1.ToString("0");
-        ChoicesAssets.Choice2.text = CorrectAnswer.ToString("0");
-        ChoicesAssets.Choice3.text = answer2.ToString("0");
+        //Remove all choices
+        if(Choices.Count > 0)
+            Choices.Clear();
 
-        CorrectChoice = 2;
+        Debug.Log(Choices.Count);
+
+        //Add all choices
+        Choices.Add(CorrectAnswer);
+        Choices.Add(answer1);
+        Choices.Add(answer2);
+
+        //Randomize choices
+        ShuffleChoices(Choices);
+
+        //Assign choices
+        ChoicesAssets.Choice1.text = Choices[0].ToString("0");
+        ChoicesAssets.Choice2.text = Choices[1].ToString("0");
+        ChoicesAssets.Choice3.text = Choices[2].ToString("0");
+    }
+
+    private void ShuffleChoices<T>(List<T> choiceList)
+    {
+        for(int i = 0; i < choiceList.Count; i++)
+        {
+            T temp = choiceList[i];
+            int rand = Random.Range(i, choiceList.Count);
+            choiceList[i] = choiceList[rand];
+            choiceList[rand] = temp;
+        }
     }
 
     private void CloseAllUI()
@@ -261,6 +296,8 @@ public class BossLevelManager : MonoBehaviour
         GameAssets.BossLivesText.transform.parent.gameObject.SetActive(false);
         GameAssets.Timer.transform.parent.gameObject.SetActive(false);
 
+
+        ChoicesAssets.Choice1.transform.parent.parent.gameObject.SetActive(false);
         ChoicesAssets.Choice1.transform.parent.gameObject.SetActive(false);
         ChoicesAssets.Choice2.transform.parent.gameObject.SetActive(false);
         ChoicesAssets.Choice3.transform.parent.gameObject.SetActive(false);
@@ -279,7 +316,7 @@ public class BossLevelManager : MonoBehaviour
         if (PlayerLives == 0)
         {
             State = GameState.Finished;
-            //SoundManager.Instance.PlaySFX(SFXClip.Lose);
+            SoundManager.Instance.PlaySFX(SFXClip.Lose);
             CloseAllUI();
             Instantiate(ResultAssets.DefeatUI);
         }
@@ -298,16 +335,17 @@ public class BossLevelManager : MonoBehaviour
         if (BossLives == 0)
         {
             State = GameState.Finished;
-            //SoundManager.Instance.PlaySFX(SFXClip.Win);
+            AnimationAssets.PlayerAnim.SetTrigger("Victory");
+            SoundManager.Instance.PlaySFX(SFXClip.Win);
             CloseAllUI();
             Instantiate(ResultAssets.VictoryUI);
         }
     }
 
-    public void CheckChoice(int choice)
+    public void CheckChoice(Text choice)
     {
         //Correct answer is chosen, damage boss
-        if(choice == CorrectChoice)
+        if(int.Parse(choice.text) == CorrectAnswer)
         {
             BossHit();
         }
@@ -316,5 +354,10 @@ public class BossLevelManager : MonoBehaviour
         {
             PlayerHit();
         }
+    }
+
+    public void StartTimer(bool start)
+    {
+        RunTimer = start;
     }
 }
